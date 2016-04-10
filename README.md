@@ -9,7 +9,7 @@ android热修复，打补丁，不用发版本就能实时的解决一些bug
 	不再需要重新发布App，不再需要用户重新下载，覆盖安装？
 
 
-#搜索发现有这3种方式可以实现（至于其他的方式，暂不清楚）
+#目前主流的有这3种方式可以实现（至于其他的方式，暂不清楚）
 
 	1.dexposed     github https://github.com/alibaba/dexposed
 
@@ -102,9 +102,9 @@ android热修复，打补丁，不用发版本就能实时的解决一些bug
 关闭app（不是简单的退出，而是要结束app的进程），将out.apatch放sdcard根目录（就是你的手机内存根目录）后，重新打开app，toast方法改变了
 	
 
-七，还有源码混淆
+##七，还有源码混淆
 
-
+![image](http://img.blog.csdn.net/20160410002230749?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 ps：
 
 1. 这里只是简单的测试了一下，没有复杂的功能，而且andfix不支持布局资源等的修改。

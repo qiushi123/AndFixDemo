@@ -26,18 +26,18 @@ android热修复，打补丁，不用发版本就能实时的解决一些bug
 #使用步骤
 
 ##一，Android studio可以在build.gradle里导入andfix，
-	  compile 'com.alipay.euler:andfix:0.3.1'
+compile 'com.alipay.euler:andfix:0.3.1'
 
-	gradle导入的话还有个小问题，所以还是建议把类库源码导入到你的项目中去
-	但是我是使用module的方式添加andfix，这样可以直接查看编辑源码，而且直接，后面再说。
-	我的项目里有andfix类库源码，你可以直接把源码导入到项目中，如下图所示
-![image](https://github.com/qiushi123/AndFixDemo/blob/master/imagsDemo/1.png?raw=true)
+gradle导入的话还有个小问题，所以还是建议把类库源码导入到你的项目中去
+但是我是使用module的方式添加andfix，这样可以直接查看编辑源码，而且直接，后面再说。
+我的项目里有andfix类库源码，你可以直接把源码导入到项目中，如下图所示
+![image](http://img.blog.csdn.net/20160410001809652?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 	
 	
 ##二，在你的项目记得新建jniLibs文件夹，把我项目中jniLibs里的so文件移到你的jniLibs里，如下图。
-![image](https://github.com/qiushi123/AndFixDemo/blob/master/imagsDemo/2.png?raw=true)
+![image](http://img.blog.csdn.net/20160410001833621?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 
-三，把我项目的以下代码拷贝到你的Application中，（我项目简单起见就两个类：mainactivity和myapplication）
+##三，把我项目的以下代码拷贝到你的Application中，（我项目简单起见就两个类：mainactivity和myapplication）
 	public class MainApplication extends Application {
     private static final String TAG = "euler";
     private static final String APATCH_PATH = "/out.apatch";
@@ -73,34 +73,34 @@ android热修复，打补丁，不用发版本就能实时的解决一些bug
 
     }
 
-四，接着打包1.apk（这个1.apk就相当于你上线的版本）
-![image](https://github.com/qiushi123/AndFixDemo/blob/master/imagsDemo/4.png?raw=true)
+##四，接着打包1.apk（这个1.apk就相当于你上线的版本）
+![image](http://img.blog.csdn.net/20160410002014511?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 
-	然后修改mainactivity的toast()，打包2.apk。（
-![image](https://github.com/qiushi123/AndFixDemo/blob/master/imagsDemo/5.png?raw=true)
+###然后修改mainactivity的toast()，打包2.apk。（
+![image](http://img.blog.csdn.net/20160410002028339?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 
-五，生成你的补丁包（最重要的一步）
-	这时需要用到：apkpatch-1.0.3 你可以到网上下，也可以直接用我项目里的apkpatch-1.0.3压缩文件
-	
-	在apkpatch-1.0.3中把你生成的1.apk 和2.apk复制到apkpatch-1.0.3文件中，把你的签名文件：**.keystore也复制到apkpatch-1.0.3文件中
+##五，生成你的补丁包（最重要的一步）
+这时需要用到：apkpatch-1.0.3 你可以到网上下，也可以直接用我项目里的apkpatch-1.0.3压缩文件
+在apkpatch-1.0.3中把你生成的1.apk 和2.apk复制到apkpatch-1.0.3文件中，把你的签名文件：**.keystore也复制到apkpatch-1.0.3文件中
 	接下来cmd命令行上场了
-![image](https://github.com/qiushi123/AndFixDemo/blob/master/imagsDemo/6.png?raw=true)	
-![image](https://github.com/qiushi123/AndFixDemo/blob/master/imagsDemo/7.png?raw=true)	
+![image](http://img.blog.csdn.net/20160410002112622?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)	
+![image](http://img.blog.csdn.net/20160410002132294?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)	
 	
-上面输入的命令行：
-	apkpatch -f 2.apk -t 1.apk -o output1 -k qiushi.jks -p 123456 -a qiushi -e 123456 
-命令行意思：
-	apkpatch -f new.apk -t old.apk -o output1 -k 签名文件 -p 签名密码 -a 机构名 -e 机构签名密码
+###上面输入的命令行：
+###apkpatch -f 2.apk -t 1.apk -o output1 -k qiushi.jks -p 123456 -a qiushi -e 123456 
+###命令行意思：
+###apkpatch -f new.apk -t old.apk -o output1 -k 签名文件 -p 签名密码 -a 机构名 -e 机构签名密码
 
 	
-六，如无错误，编译后会生成一个apatch文件，改名成out.apatch，如下图
-![image](https://github.com/qiushi123/AndFixDemo/blob/master/imagsDemo/8.png?raw=true)
+##六，如无错误，编译后会生成一个apatch文件，改名成out.apatch，如下图
+![image](http://img.blog.csdn.net/20160410002150060?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 
-安装打开1.apk
-![image](https://github.com/qiushi123/AndFixDemo/blob/master/imagsDemo/9.png?raw=true)
+###安装打开1.apk
+![image](http://img.blog.csdn.net/20160410002205356?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 
-关闭app（不是简单的退出，而是要结束app的进程），将out.apatch放sdcard根目录（就是你的手机内存根目录）后，重新打开app，toast方法改变了
+###关闭app（不是简单的退出，而是要结束app的进程），将out.apatch放sdcard根目录（就是你的手机内存根目录）后，重新打开app，toast方法改变了
 	
+![image](http://img.blog.csdn.net/20160410002219153?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 
 ##七，还有源码混淆
 

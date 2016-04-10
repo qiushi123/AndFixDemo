@@ -29,10 +29,10 @@ public class MainActivity extends Activity {
 
     //打包1.apk后，修改toast内容，打包2.apk
     private void toast() {
-        //        tv.setText("热修复前");
-        //        Toast.makeText(this, "old", Toast.LENGTH_SHORT).show();
+                tv.setText("热修复前");
+                Toast.makeText(this, "old", Toast.LENGTH_SHORT).show();
 
-        tv.setText("热修后");
-        Toast.makeText(this, "new", Toast.LENGTH_SHORT).show();
+//        tv.setText("热修后");
+//        Toast.makeText(this, "new", Toast.LENGTH_SHORT).show();
     }
 }

@@ -51,6 +51,8 @@ public class MainApplication extends Application {
 //            }
         } catch (IOException e) {
             Log.e(TAG, "", e);
+
+
         }
     }
 

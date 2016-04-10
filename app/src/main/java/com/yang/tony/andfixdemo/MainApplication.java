@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.alipay.euler.andfix.patch.PatchManager;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -43,12 +44,12 @@ public class MainApplication extends Application {
             Log.d(TAG, "apatch:" + patchFileString + " added.");
 
             //这里我加了个方法，复制加载补丁成功后，删除sdcard的补丁，避免每次进入程序都重新加载一次
-//            File f = new File(this.getFilesDir(), DIR + APATCH_PATH);
-//            if (f.exists()) {
-//                boolean result = new File(patchFileString).delete();
-//                if (!result)
-//                    Log.e(TAG, patchFileString + " delete fail");
-//            }
+            File f = new File(this.getFilesDir(), DIR + APATCH_PATH);
+            if (f.exists()) {
+                boolean result = new File(patchFileString).delete();
+                if (!result)
+                    Log.e(TAG, patchFileString + " delete fail");
+            }
         } catch (IOException e) {
             Log.e(TAG, "", e);
 
